@@ -48,13 +48,17 @@ class Handler extends ExceptionHandler
 //        return parent::render($request, $e);
         $response = parent::render($request, $e);
 
-        $code = $response->getStatusCode();
-        $msg = $e->getMessage();
+        $code = ($e->getCode() >= 100 && $e->getCode() < 600) ? $e->getCode() : 500;
         $result = [
-            'code' => $code,
-            'msg' => $msg,
+            'code'      => $code,
+            'success'   => false,
+            'data'      => [],
+            'msg'       => $e->getMessage()
         ];
-
+        if (env('APP_DEBUG') == true)
+        {
+            $result['msg'] = sprintf("%s:%s:%s", $e->getFile(), $e->getLine(), $e->getMessage());
+        }
         return response()->json($result, $code);
     }
 }
