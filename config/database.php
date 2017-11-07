@@ -1,9 +1,4 @@
 <?php
-/**
- * User: linjianmin
- * Date: 2016/12/7
- * Time: 下午4:42
- */
 
 return [
 
@@ -31,7 +26,7 @@ return [
     |
     */
 
-    'default' => env('E_DB_CONNECTION', 'extra'),
+    'default' => env('DB_CONNECTION', 'normal'),
 
     /*
     |--------------------------------------------------------------------------
@@ -59,7 +54,7 @@ return [
                 'host'  => env('DB_WRITE_HOST', 'localhost'),
             ],
             'driver'    => env('DB_DRIVER', 'mysql'),
-            'database'  => env('DB_DATABASE_NAME', 'forge'),
+            'database'  => env('DB_DATABASE', 'forge'),
             'username'  => env('DB_USERNAME', 'forge'),
             'password'  => env('DB_PASSWORD', ''),
             'charset'   => env('DB_CHARSET', 'utf8'),
@@ -67,36 +62,6 @@ return [
             'prefix'    => env('DB_PREFIX', ''),
         ],
 
-        'extra' => [
-            'read'      => [
-                'host'  => env('E_DB_READ_HOST', 'localhost'),
-            ],
-            'write'     => [
-                'host'  => env('E_DB_WRITE_HOST', 'localhost'),
-            ],
-            'driver'    => env('E_DB_DRIVER', 'mysql'),
-            'database'  => env('E_DB_DATABASE_NAME', 'forge'),
-            'username'  => env('E_DB_USERNAME', 'forge'),
-            'password'  => env('E_DB_PASSWORD', ''),
-            'charset'   => env('E_DB_CHARSET', 'utf8'),
-            'collation' => env('E_DB_COLLATION', 'utf8_unicode_ci'),
-            'prefix'    => env('E_DB_PREFIX', ''),
-        ],
-        'statistic' => [
-            'read'      => [
-                'host'  => env('S_DB_READ_HOST', 'localhost'),
-            ],
-            'write'     => [
-                'host'  => env('S_DB_WRITE_HOST', 'localhost'),
-            ],
-            'driver'    => env('S_DB_DRIVER', 'mysql'),
-            'database'  => env('S_DB_DATABASE_NAME', 'forge'),
-            'username'  => env('S_DB_USERNAME', 'forge'),
-            'password'  => env('S_DB_PASSWORD', ''),
-            'charset'   => env('S_DB_CHARSET', 'utf8'),
-            'collation' => env('S_DB_COLLATION', 'utf8_unicode_ci'),
-            'prefix'    => env('S_DB_PREFIX', ''),
-        ],
 
     ],
 
@@ -111,14 +76,6 @@ return [
             'password' => env('REDIS_PASSWORD', null),
             'user' => env('REDIS_USER', null),
         ],
-
-        'statistic' => [
-            'host'     => env('S_REDIS_HOST', '127.0.0.1'),
-            'port'     => env('S_REDIS_PORT', 6379),
-            'database' => env('S_REDIS_DEFAULT_DB', 0),
-            'password' => env('S_REDIS_PASSWORD', null),
-            'user' => env('S_REDIS_USER', null),
-        ]
 
     ],
 

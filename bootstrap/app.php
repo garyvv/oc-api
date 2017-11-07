@@ -81,6 +81,8 @@ $app->singleton(
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+$app->register(Illuminate\Redis\RedisServiceProvider::class);
+
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +99,9 @@ $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
     require __DIR__.'/../routes/web.php';
+});
+
+$app->router->group(['namespace' => 'App\Http\Controllers\JinLi', 'prefix' => 'api'], function ($router) {
     require __DIR__.'/../routes/store.php';
 });
 
