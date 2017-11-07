@@ -1,0 +1,137 @@
+<?php
+/**
+ * User: linjianmin
+ * Date: 2016/12/7
+ * Time: 下午4:42
+ */
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | PDO Fetch Style
+    |--------------------------------------------------------------------------
+    |
+    | By default, database results will be returned as instances of the PHP
+    | stdClass object; however, you may desire to retrieve records in an
+    | array format for simplicity. Here you can tweak the fetch style.
+    |
+    */
+
+    'fetch' => PDO::FETCH_ASSOC,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Default Database Connection Name
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify which of the database connections below you wish
+    | to use as your default connection for all database work. Of course
+    | you may use many connections at once using the Database library.
+    |
+    */
+
+    'default' => env('E_DB_CONNECTION', 'extra'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Database Connections
+    |--------------------------------------------------------------------------
+    |
+    | Here are each of the database connections setup for your application.
+    | Of course, examples of configuring each database platform that is
+    | supported by Laravel is shown below to make development simple.
+    |
+    |
+    | All database work in Laravel is done through the PHP PDO facilities
+    | so make sure you have the driver for your particular database of
+    | choice installed on your machine before you begin development.
+    |
+    */
+
+    'connections' => [
+
+        'normal' => [
+            'read'      => [
+                'host'  => env('DB_READ_HOST', 'localhost'),
+            ],
+            'write'     => [
+                'host'  => env('DB_WRITE_HOST', 'localhost'),
+            ],
+            'driver'    => env('DB_DRIVER', 'mysql'),
+            'database'  => env('DB_DATABASE_NAME', 'forge'),
+            'username'  => env('DB_USERNAME', 'forge'),
+            'password'  => env('DB_PASSWORD', ''),
+            'charset'   => env('DB_CHARSET', 'utf8'),
+            'collation' => env('DB_COLLATION', 'utf8_unicode_ci'),
+            'prefix'    => env('DB_PREFIX', ''),
+        ],
+
+        'extra' => [
+            'read'      => [
+                'host'  => env('E_DB_READ_HOST', 'localhost'),
+            ],
+            'write'     => [
+                'host'  => env('E_DB_WRITE_HOST', 'localhost'),
+            ],
+            'driver'    => env('E_DB_DRIVER', 'mysql'),
+            'database'  => env('E_DB_DATABASE_NAME', 'forge'),
+            'username'  => env('E_DB_USERNAME', 'forge'),
+            'password'  => env('E_DB_PASSWORD', ''),
+            'charset'   => env('E_DB_CHARSET', 'utf8'),
+            'collation' => env('E_DB_COLLATION', 'utf8_unicode_ci'),
+            'prefix'    => env('E_DB_PREFIX', ''),
+        ],
+        'statistic' => [
+            'read'      => [
+                'host'  => env('S_DB_READ_HOST', 'localhost'),
+            ],
+            'write'     => [
+                'host'  => env('S_DB_WRITE_HOST', 'localhost'),
+            ],
+            'driver'    => env('S_DB_DRIVER', 'mysql'),
+            'database'  => env('S_DB_DATABASE_NAME', 'forge'),
+            'username'  => env('S_DB_USERNAME', 'forge'),
+            'password'  => env('S_DB_PASSWORD', ''),
+            'charset'   => env('S_DB_CHARSET', 'utf8'),
+            'collation' => env('S_DB_COLLATION', 'utf8_unicode_ci'),
+            'prefix'    => env('S_DB_PREFIX', ''),
+        ],
+
+    ],
+
+    'redis' => [
+
+        'cluster' => false,
+
+        'default' => [
+            'host'     => env('REDIS_HOST', '127.0.0.1'),
+            'port'     => env('REDIS_PORT', 6379),
+            'database' => env('REDIS_DEFAULT_DB', 0),
+            'password' => env('REDIS_PASSWORD', null),
+            'user' => env('REDIS_USER', null),
+        ],
+
+        'statistic' => [
+            'host'     => env('S_REDIS_HOST', '127.0.0.1'),
+            'port'     => env('S_REDIS_PORT', 6379),
+            'database' => env('S_REDIS_DEFAULT_DB', 0),
+            'password' => env('S_REDIS_PASSWORD', null),
+            'user' => env('S_REDIS_USER', null),
+        ]
+
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Migration Repository Table
+    |--------------------------------------------------------------------------
+    |
+    | This table keeps track of all the migrations that have already run for
+    | your application. Using this information, we can determine which of
+    | the migrations on disk haven't actually been run in the database.
+    |
+    */
+
+    'migrations' => 'migrations',
+];
