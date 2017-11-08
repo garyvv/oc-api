@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Controller extends BaseController
 {
-
+    const DEFAULT_PER_PAGE = 20;
     //
     protected function respData($data = [], $msg = '操作成功')
     {
@@ -29,7 +29,7 @@ class Controller extends BaseController
     }
 
 
-    protected function requestValidate($rules, $message)
+    protected function requestValidate($rules, $message = [])
     {
         $validate = Validator::make(Input::all(), $rules, $message);
 

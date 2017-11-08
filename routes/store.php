@@ -1,6 +1,8 @@
 <?php
 $router->group(['prefix' => 'v1'], function () use ($router){
     $router->get('categories', 'CategoryController@index');
+
+    $router->get('products', 'ProductController@index');
 });
 
 Route::post('v1/scans', function() {
