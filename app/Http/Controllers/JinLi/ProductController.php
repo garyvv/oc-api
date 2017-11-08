@@ -5,6 +5,7 @@ namespace App\Http\Controllers\JinLi;
 use App\Http\Controllers\Controller;
 use App\Libraries\CacheKey;
 use App\Models\JinLi\OcProduct;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redis;
 
@@ -24,6 +25,8 @@ class ProductController extends Controller
                         ->select(
                             'product_id',
                             'model',
+                            DB::raw('CONCAT("详细信息: ", model) AS description'),
+                            DB::raw('"/images/common/index-toy.png" AS image'),
                             'price',
                             'viewed'
                         )
@@ -52,6 +55,8 @@ class ProductController extends Controller
                         ->select(
                             'product_id',
                             'model',
+                            DB::raw('CONCAT("详细信息: ", model) AS description'),
+                            DB::raw('"/images/common/index-sale.png" AS image'),
                             'price',
                             'viewed'
                         )
