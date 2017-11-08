@@ -11,4 +11,6 @@ namespace App\Libraries;
 class CacheKey
 {
     const TAB_BAR_CATEGORIES = 'API:TAB_BAR_CATEGORIES';
+    const HOME_PRODUCT_LIST = 'API:HOME_PRODUCT_LIST:PAGE';
+    const SALES_PRODUCT_LIST = 'API:SALES_PRODUCT_LIST';
 }
