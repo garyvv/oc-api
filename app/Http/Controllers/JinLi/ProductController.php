@@ -37,4 +37,33 @@ class ProductController extends Controller
 
         return $this->respData($products);
     }
+
+
+    public function sales()
+    {
+
+        $cacheKey = CacheKey::SALES_PRODUCT_LIST;
+        $products = Redis::get($cacheKey);
+        if (!empty($products)) {
+            return $this->respData(json_decode($products, true));
+        }
+
+        $products = OcProduct::where('status', OcProduct::STATUS_COMMON_NORMAL)
+                        ->select(
+                            'product_id',
+                            'model',
+                            'price',
+                            'viewed'
+                        )
+                        ->orderBy('viewed', 'asc')
+                        ->limit(5)
+                        ->get();
+
+        if (!empty($products)) {
+            Redis::set($cacheKey, json_encode($products));
+            Redis::expire($cacheKey, 43200);
+        }
+
+        return $this->respData($products);
+    }
 }
