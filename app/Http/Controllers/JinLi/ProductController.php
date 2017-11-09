@@ -71,4 +71,36 @@ class ProductController extends Controller
 
         return $this->respData($products);
     }
+
+
+    public function detail($productId)
+    {
+        $cacheKey = CacheKey::PRODUCT_DETAIL . $productId;
+        $product = Redis::get($cacheKey);
+        if (!empty($product)) {
+//            return $this->respData(json_decode($product, true));
+        }
+
+        $product = OcProduct::getProduct($productId);
+
+        if ($product->category)
+            $product->category = explode(',', $product->category);
+        else
+            $product->category = [];
+
+
+        if ($product->images)
+            $product->images = explode(',', $product->images);
+        else
+            $product->images = ["/images/common/index-toy.png"];
+
+
+        if (!empty($product)) {
+            Redis::set($cacheKey, json_encode($product));
+            Redis::expire($cacheKey, 3600);
+        }
+
+        return $this->respData($product);
+    }
+
 }
