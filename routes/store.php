@@ -4,6 +4,7 @@ $router->group(['prefix' => 'v1'], function () use ($router){
     $router->get('categories/{categoryId}/products', 'CategoryController@products');
 
     $router->get('products', 'ProductController@index');
+    $router->get('products/{productId}', 'ProductController@detail');
 
     $router->get('banners', 'HomeController@banner');
 
@@ -15,11 +16,13 @@ $router->group(['prefix' => 'v1'], function () use ($router){
 Route::post('v1/scans', function() {
     $data = [
         'name' => '儿童玩具车',
+        'images' => ['/images/common/index-toy.png'],
         'price' => 18.5,
         'in_price' => 8,
         'multi_price' => 14,
         'quantity' => 10,
-        'company' => '乐高'
+        'description' => '儿童玩具车的详细描述就是价格为比较优惠，双十一力度',
+        'category' => ['乐高', '嘉嘉乐']
     ];
 
     $result = [
@@ -33,11 +36,13 @@ Route::post('v1/scans', function() {
 Route::get('v1/scans', function() {
     $data = [
         'name' => '儿童玩具车',
+        'images' => ['/images/common/index-toy.png'],
         'price' => 18.5,
         'in_price' => 8,
         'multi_price' => 14,
         'quantity' => 10,
-        'company' => '乐高'
+        'description' => '儿童玩具车的详细描述就是价格为比较优惠，双十一力度',
+        'category' => ['乐高', '嘉嘉乐']
     ];
 
     $result = [
