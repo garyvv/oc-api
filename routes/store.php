@@ -1,10 +1,13 @@
 <?php
 $router->group(['prefix' => 'v1'], function () use ($router){
     $router->get('categories', 'CategoryController@index');
+    $router->get('categories/{categoryId}/products', 'CategoryController@products');
 
     $router->get('products', 'ProductController@index');
 
     $router->get('banners', 'HomeController@banner');
+
+    $router->get('keywords', 'HomeController@keywords');
 
     $router->get('sales/products', 'ProductController@sales');
 });
