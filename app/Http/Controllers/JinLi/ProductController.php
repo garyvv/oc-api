@@ -35,7 +35,7 @@ class ProductController extends Controller
 
         if (!empty($products)) {
             Redis::set($cacheKey, json_encode($products));
-            Redis::expire($cacheKey, 1800);
+            Redis::expire($cacheKey, 3600);
         }
 
         return $this->respData($products);

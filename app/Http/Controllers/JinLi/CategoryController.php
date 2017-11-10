@@ -42,6 +42,7 @@ class CategoryController extends Controller
 
         if ($products) {
             Redis::set($cacheKey, json_encode($products));
+            Redis::expire($cacheKey, 3600);
         }
 
         return $this->respData($products);
