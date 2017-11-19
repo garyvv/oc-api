@@ -78,7 +78,7 @@ class ProductController extends Controller
         $cacheKey = CacheKey::PRODUCT_DETAIL . $productId;
         $product = Redis::get($cacheKey);
         if (!empty($product)) {
-            return $this->respData(json_decode($product, true));
+//            return $this->respData(json_decode($product, true));
         }
 
         $product = OcProduct::getProduct($productId);
@@ -95,7 +95,7 @@ class ProductController extends Controller
             $product->images = ["/images/common/index-toy.png"];
 
         $html = $product->title;
-        strpos($product->description, 'http') && $html = file_get_contents($product->description);
+        strpos($product->description, 'http') !== false && $html = file_get_contents($product->description);
         $product->description = $html;
 
 
