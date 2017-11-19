@@ -20,7 +20,7 @@ class OcProduct extends BaseModel
                 'p.price',
                 'p.viewed',
 //                DB::raw('CONCAT("' . env('TOY_HTTP_IMAGE') . '", p.image) AS image'), // todo
-                DB::raw('"/images/common/index-toy.png" AS image'),
+                'image',
                 'p.model',
                 'pd.description'
             )
