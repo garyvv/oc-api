@@ -26,7 +26,7 @@ class ProductController extends Controller
                             'product_id',
                             'model',
                             DB::raw('CONCAT("详细信息: ", model) AS description'),
-                            DB::raw('"/images/common/index-toy.png" AS image'),
+                            'image',
                             'price',
                             'viewed'
                         )
@@ -56,7 +56,7 @@ class ProductController extends Controller
                             'product_id',
                             'model',
                             DB::raw('CONCAT("详细信息: ", model) AS description'),
-                            DB::raw('"/images/common/index-sale.png" AS image'),
+                            'image',
                             'price',
                             'viewed'
                         )
