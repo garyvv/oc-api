@@ -94,8 +94,9 @@ class ProductController extends Controller
         else
             $product->images = ["/images/common/index-toy.png"];
 
-        $html = file_get_contents($product->description);
-        $product->description = $html ? $html : $product->title;
+        $html = $product->title;
+        strpos($product->description, 'http') && $html = file_get_contents($product->description);
+        $product->description = $html;
 
 
         if (!empty($product)) {
