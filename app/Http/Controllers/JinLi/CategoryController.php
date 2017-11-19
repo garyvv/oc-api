@@ -39,8 +39,15 @@ class CategoryController extends Controller
         }
 
         $products = OcProduct::getProductsByCategoryId($categoryId);
+        $products = json_decode(json_encode($products), true);
 
-        if ($products) {
+        if ($products['data']) {
+            foreach ($products['data'] as $key => $product)
+            {
+                if ($product['photos']) $products['data'][$key]['photos'] = explode(',', $product['photos']);
+                else $products['data'][$key]['photos'] = ['/images/common/index-toy.png'];
+            }
+
             Redis::set($cacheKey, json_encode($products));
             Redis::expire($cacheKey, 3600);
         }
