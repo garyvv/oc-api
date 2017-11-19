@@ -22,6 +22,7 @@ class OcProduct extends BaseModel
                 'p.image',
                 DB::raw('GROUP_CONCAT(pi.image) AS photos'),
                 'p.model',
+                'p.title',
                 'p.content AS description'
             )
             ->where([
@@ -46,6 +47,7 @@ class OcProduct extends BaseModel
                 'p.viewed',
                 'p.image',
                 'p.model',
+                'p.title',
                 'p.content AS description',
                 DB::raw('GROUP_CONCAT(c.name) AS category'),
                 DB::raw('GROUP_CONCAT(c.category_id) AS category_ids'),
