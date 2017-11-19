@@ -78,7 +78,7 @@ class ProductController extends Controller
         $cacheKey = CacheKey::PRODUCT_DETAIL . $productId;
         $product = Redis::get($cacheKey);
         if (!empty($product)) {
-//            return $this->respData(json_decode($product, true));
+            return $this->respData(json_decode($product, true));
         }
 
         $product = OcProduct::getProduct($productId);
