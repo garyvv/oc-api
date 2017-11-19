@@ -14,21 +14,22 @@ class OcProduct extends BaseModel
     {
         return DB::table('oc_product_to_category AS p2c')
             ->leftJoin('oc_product AS p', 'p2c.product_id', '=', 'p.product_id')
-            ->leftJoin('oc_product_description AS pd', 'pd.product_id', '=', 'p2c.product_id')
+            ->leftJoin('oc_product_image AS pi', 'pi.product_id', '=', 'p2c.product_id')
             ->select(
                 'p.product_id',
                 'p.price',
                 'p.viewed',
-//                DB::raw('CONCAT("' . env('TOY_HTTP_IMAGE') . '", p.image) AS image'), // todo
-                'image',
+                'p.image',
+                DB::raw('GROUP_CONCAT(pi.image) AS photos'),
                 'p.model',
-                'pd.description'
+                'p.content AS description'
             )
             ->where([
                 'p.status' => self::STATUS_COMMON_NORMAL,
                 'p2c.category_id' => $categoryId
             ])
-            ->orderBy('sort_order', 'ASC')
+            ->orderBy('p.sort_order', 'ASC')
+            ->groupBy('p2c.product_id')
             ->paginate(self::DEFAULT_PER_PAGE);
     }
 
