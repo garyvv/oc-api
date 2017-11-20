@@ -5,6 +5,7 @@ namespace App\Http\Controllers\JinLi;
 use App\Http\Controllers\Controller;
 use App\Libraries\CacheKey;
 use App\Models\JinLi\OcProduct;
+use DiDom\Document;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redis;
@@ -95,7 +96,11 @@ class ProductController extends Controller
             $product->images = ["/images/common/index-toy.png"];
 
         $html = $product->title;
-        strpos($product->description, 'http') !== false && $html = file_get_contents($product->description);
+        if ($product->description && strpos($product->description, 'http') !== false) {
+            $html = new Document($product->description, true);
+            $content = $html->find('body');
+            $html = $content[0]->html();
+        }
         $product->description = $html;
 
 
