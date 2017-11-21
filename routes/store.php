@@ -5,6 +5,7 @@ $router->group(['prefix' => 'v1'], function () use ($router){
 
     $router->get('products', 'ProductController@index');
     $router->get('products/{productId}', 'ProductController@detail');
+    $router->get('scans/{barCode}', 'ProductController@scan');
 
     $router->get('banners', 'HomeController@banner');
 
