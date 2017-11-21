@@ -45,7 +45,7 @@ class ProductController extends Controller
 
     public function sales()
     {
-
+        $limit = Input::get('limit', 10);
         $cacheKey = CacheKey::SALES_PRODUCT_LIST;
         $products = Redis::get($cacheKey);
         if (!empty($products)) {
@@ -62,7 +62,7 @@ class ProductController extends Controller
                             'viewed'
                         )
                         ->orderBy('viewed', 'asc')
-                        ->limit(5)
+                        ->limit($limit)
                         ->get();
 
         if (!empty($products)) {
