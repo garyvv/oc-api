@@ -57,7 +57,8 @@ class Handler extends ExceptionHandler
         ];
         if (env('APP_DEBUG') == true)
         {
-            $result['msg'] = sprintf("%s:%s:%s", $e->getFile(), $e->getLine(), $e->getMessage());
+//            $result['msg'] = sprintf("%s:%s:%s", $e->getFile(), $e->getLine(), $e->getMessage());
+            $result['msg'] = $e->getMessage();
         }
         return response()->json($result, $code);
     }

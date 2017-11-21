@@ -112,4 +112,11 @@ class ProductController extends Controller
         return $this->respData($product);
     }
 
+    public function scan($barCode)
+    {
+        $product = OcProduct::where('bar_code', $barCode)->first();
+        if (empty($product)) return $this->respFail('product not exist');
+
+        return $this->respData($product);
+    }
 }
