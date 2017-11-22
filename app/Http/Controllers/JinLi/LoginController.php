@@ -5,8 +5,9 @@ namespace App\Http\Controllers\JinLi;
 use App\Helpers\General;
 use App\Http\Controllers\Controller;
 use App\Libraries\CacheKey;
-use EasyWeChat\Foundation\Application;
+use App\Models\JinLi\ToyUser;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redis;
 
 class LoginController extends Controller
 {
@@ -25,18 +26,32 @@ class LoginController extends Controller
         $result = General::Curl($url);
 
         if (isset($result['openid'])) {
-            $app = new Application(config('wechat'));
-            $userInfo = $app->user->get($result['openid']);
+            $user = ToyUser::where('openid', $result['openid'])->first();
+            if (empty($user)) {
+                $user = new ToyUser();
+                $user->openid = $result['openid'];
+                $user->save();
+            }
 
+            $data = [];
             $salt = 'TOY-LOGIN' . time();
-            $userInfo->token = strtoupper(md5('OPENID:' . $result['openid'] . $salt));
+            $data['token'] = strtoupper(md5('OPENID:' . $result['openid'] . $salt));
 
-            return $this->respData($userInfo);
+//            保持登录状态
+            $cacheKey = CacheKey::WECHAT_SESSION . $data['token'];
+            $cacheData = [
+                'open_id' => $result['openid'],
+                'uid' => $user->id,
+            ];
+            Redis::set($cacheKey, json_encode($cacheData));
+            Redis::expire($cacheKey, 86400 * 30); // 保持30日登录状态
+
+            $data['uid'] = $user->id;
+            return $this->respData($data);
         } else {
-            $this->respFail('code非法');
+            return $this->respFail('code非法');
         }
 
-        return $this->respData($result);
 
     }
 
