@@ -12,6 +12,8 @@ $router->group(['prefix' => 'v1'], function () use ($router){
     $router->get('keywords', 'HomeController@keywords');
 
     $router->get('sales/products', 'ProductController@sales');
+
+    $router->post('login', 'LoginController@login');
 });
 
 Route::post('v1/scans', function() {

@@ -105,5 +105,6 @@ $app->router->group(['namespace' => 'App\Http\Controllers\JinLi', 'prefix' => 'a
     require __DIR__.'/../routes/store.php';
 });
 
+$app->configure('wechat');//添加自定义配置文件
 
 return $app;
