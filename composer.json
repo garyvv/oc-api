@@ -10,7 +10,8 @@
         "vlucas/phpdotenv": "~2.2",
         "illuminate/redis": "^5.5",
         "predis/predis": "^1.1",
-        "imangazaliev/didom": "^1.12"
+        "imangazaliev/didom": "^1.12",
+        "overtrue/wechat": "^3.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
