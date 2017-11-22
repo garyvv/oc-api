@@ -50,7 +50,7 @@ class Handler extends ExceptionHandler
 
         $code = ($e->getCode() >= 100 && $e->getCode() < 600) ? $e->getCode() : 500;
         $result = [
-            'code'      => $code,
+            'code'      => $e->getCode(),
             'success'   => false,
             'data'      => [],
             'msg'       => $e->getMessage()

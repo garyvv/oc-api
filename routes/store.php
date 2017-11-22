@@ -14,6 +14,15 @@ $router->group(['prefix' => 'v1'], function () use ($router){
     $router->get('sales/products', 'ProductController@sales');
 
     $router->post('login', 'LoginController@login');
+
+    /**
+     * 需要授权的接口
+     */
+    $router->group(['namespace' => 'Auth'], function () use ($router){
+        $router->put('users', 'UserController@edit');
+    });
+
+
 });
 
 Route::post('v1/scans', function() {

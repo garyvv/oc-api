@@ -21,4 +21,8 @@ class CacheKey
 
     const PRODUCT_DETAIL = 'API:PRODUCT_DETAIL:ID:';
 
+    const WECHAT_SESSION = 'API:WECHAT:SESSION:';
+
+    const USER_INFO = 'API:USER_INFO:ID:';
+
 }
