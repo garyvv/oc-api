@@ -48,4 +48,48 @@ class General
         $result =  json_decode( json_encode( $object),true);
         return  $result;
     }
+
+    public static function formatTimeGroup($dateTime, &$tmpTime, $str = 'm/d')
+    {
+
+        $todayTime = strtotime('today');
+        $yesterdayTime = mktime(0, 0, 0, date('m'), date('d')-1, date('Y'));
+
+        $time = strtotime(date('Y-m-d', strtotime($dateTime)));
+
+        if ($time == $todayTime) {
+            $result = '今天';
+        } elseif ($time == $yesterdayTime) {
+            $result = '昨天';
+        } else {
+            $result = date("$str", $time);
+        }
+
+        if ($tmpTime == $result) {
+            $result = '';
+        } else {
+            $tmpTime = $result;
+        }
+
+        return $result;
+    }
+
+    public static function formatTime($dateTime, $str = 'm-d'){
+        $time = strtotime($dateTime);
+        $way = time() - $time;
+        if($way < 60){
+            $r = '刚刚';
+        }elseif($way >= 60 && $way <3600){
+            $r = floor($way/60).'分钟前';
+        }elseif($way >=3600 && $way <86400){
+            $r = floor($way/3600).'小时前';
+        }elseif($way >=86400 && $way <2592000){
+            $r = floor($way/86400).'天前';
+        }elseif($way >=2592000 && $way <15552000){
+            $r = floor($way/2592000).'个月前';
+        }else{
+            $r = date("$str",$time);
+        }
+        return $r;
+    }
 }

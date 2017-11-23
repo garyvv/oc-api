@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Controller extends BaseController
 {
-    const DEFAULT_PER_PAGE = 20;
+    const DEFAULT_PER_PAGE = 30;
     //
     protected function respData($data = [], $msg = '操作成功')
     {

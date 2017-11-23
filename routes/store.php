@@ -20,6 +20,7 @@ $router->group(['prefix' => 'v1'], function () use ($router){
      */
     $router->group(['namespace' => 'Auth'], function () use ($router){
         $router->put('users', 'UserController@edit');
+        $router->get('views', 'UserController@viewHistory');
     });
 
 
