@@ -24,5 +24,6 @@ class CacheKey
     const WECHAT_SESSION = 'API:WECHAT:SESSION:';
 
     const USER_INFO = 'API:USER_INFO:ID:';
+    const USER_VIEW_HISTORY = 'API:USER_VIEW_HISTORY';
 
 }

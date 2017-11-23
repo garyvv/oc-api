@@ -76,6 +76,12 @@ class ProductController extends Controller
 
     public function detail($productId)
     {
+//        足迹
+        $uid = Input::header('uid', 0);
+        if ($uid > 0) {
+            Redis::rpush(CacheKey::USER_VIEW_HISTORY, json_encode(['uid' => $uid, 'product_id' => $productId, 'view_time' => date('Y-m-d H:i:s')]));
+        }
+
         $cacheKey = CacheKey::PRODUCT_DETAIL . $productId;
         $product = Redis::get($cacheKey);
         if (!empty($product)) {
