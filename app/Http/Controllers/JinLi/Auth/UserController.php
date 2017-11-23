@@ -9,7 +9,10 @@
 namespace App\Http\Controllers\JinLi\Auth;
 
 
+use App\Helpers\General;
 use App\Models\JinLi\ToyUser;
+use App\Models\JinLi\ToyUserView;
+use App\Services\JinLi\ProductService;
 use Illuminate\Support\Facades\Input;
 
 class UserController extends AuthController
@@ -29,6 +32,16 @@ class UserController extends AuthController
         $user->save();
 
         return $this->respData($user);
+    }
+
+    public function viewHistory()
+    {
+        $histories = ToyUserView::getUserViewHistory($this->uid);
+
+        $histories = General::object2array($histories);
+        $histories = ProductService::formatData($histories);
+
+        return $this->respData($histories);
     }
 
 }

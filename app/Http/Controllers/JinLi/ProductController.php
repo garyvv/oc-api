@@ -56,7 +56,6 @@ class ProductController extends Controller
                         ->select(
                             'product_id',
                             'model',
-                            DB::raw('CONCAT("详细信息: ", model) AS description'),
                             'image',
                             'price',
                             'viewed'
